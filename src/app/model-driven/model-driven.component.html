@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row">
+    <h3 class="col-12">Registration Form</h3>
+    <br>
+    <form class="col-12" [formGroup]="regForm" (submit)="onSubmit()">
+      <div class="form-group col-12">
+        <label>First Name</label>
+        <input
+          class="form-control col-12 col-md-6"
+          type="text"
+          id="firstName"
+          name="firstName"
+          placeholder="First Name"
+          formControlName="firstName"
+          />
+          <span class="help-block" *ngIf="!regForm.get('firstName').valid && regForm.get('firstName').touched">Enter Valid name</span>
+      </div>
+      <div class="form-group col-12">
+        <label>Last Name</label>
+        <input 
+          class="form-control col-12 col-md-6" 
+          type="text"
+          id="lastName" 
+          name="lastName"
+          placeholder="Last Name"
+          formControlName="lastName"/>
+          <span class="help-block" *ngIf="!regForm.get('lastName').valid && regForm.get('lastName').touched">Enter Valid name</span>
+      </div>
+      <div class="form-group col-12">
+        <label>Email</label>
+        <input 
+          class="form-control col-12 col-md-6" 
+          type="email"
+          id="email" 
+          name="email" 
+          placeholder="Email"
+          formControlName="email"/>
+          <span class="help-block" *ngIf="!regForm.get('email').valid && regForm.get('email').touched">Enter Valid name</span>
+      </div>
+      <div class="radio" *ngFor="let gender of gender">
+        <label>
+          <input 
+          type="radio"
+          [value]="gender"
+          formControlName="gender"
+          /> {{ gender }}
+        </label>
+      </div>
+      <div class="form-group">
+        <label>Secret Question</label>
+        <select
+        class="form-control col-12 col-md-6"
+          id="secret"
+          name="secret"
+          formControlName="secretQn">
+          <option 
+            value="pet">First pet</option>
+            <option 
+            value="school">First School</option>
+        </select>
+      </div>
+      <div class="form-group col-12">
+        <label>Answer</label>
+        <input 
+          class="form-control col-12 col-md-6" 
+          type="text"
+          id="answer" 
+          name="answer" 
+          placeholder="Answer"
+          formControlName="answer"
+          />
+          <span class="help-block" *ngIf="!regForm.get('answer').valid && regForm.get('answer').touched">Enter your answer</span>
+      </div>
+      <div class="form-group">
+        <label>Your Comments</label>
+        <textarea 
+        class="form-control col-12 col-md-6"
+          name="comments"
+          id="comments"
+          formControlName="comments"
+          placeholder="Your Comments"
+          rows=3></textarea>
+      </div>
+      <div class="form-group">
+        <input 
+          type="checkbox"
+          [value]="'confirmChk'"
+          formControlName="confirmChk"
+          id="confirm"
+          /> Confirm above information
+      </div>
+      <button class="btn btn-primary" [disabled]="!regForm.valid" type="submit">Submit Form</button>
+      <button class="btn btn-primary" (click)="resetForm()" type="button">Reset Form</button>
+    </form>
+  </div>
+  <div class="row" *ngIf="formSubmitted">
+    <div class="col-12">
+      <h3>Your Data</h3>
+      <p>First Name: {{ formDetails.firstName }}</p>
+      <p>Last Name: {{ formDetails.lastName }}</p>
+      <p>Secret qn: {{ formDetails.SecretQuestion }}</p>
+      <p>Answer: {{ formDetails.answer }}</p>
+      <p>Gender: {{ formDetails.gender }}</p>
+    </div>
+  </div>
+</div>
+
